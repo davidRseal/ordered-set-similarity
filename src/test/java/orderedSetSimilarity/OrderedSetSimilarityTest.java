@@ -21,43 +21,22 @@ class OrderedSetSimilarityTest {
     }
 
     @Test
-    public void compareVariousLists_compoundOrderedSetSimilarity() {
-        // This is just to check that the compoundOrderedSetSimilarity method is identical to the orderedSetSimilarity method
-        assertEquals(1.0, compoundOrderedSetSimilarity(Arrays.asList(1, 2, 3, 4, 5), Arrays.asList(1, 2, 3, 4, 5)));
-        assertEquals(1.0, compoundOrderedSetSimilarity(List.of(1), List.of(1)));
-        assertEquals(1.0, compoundOrderedSetSimilarity(Collections.emptyList(), Collections.emptyList()));
-        assertEquals(0.8280000000000001, compoundOrderedSetSimilarity(Arrays.asList(1, 3, 2, 4, 5), Arrays.asList(1, 2, 3, 4, 5)));
-        assertEquals(0.8055555555555556, compoundOrderedSetSimilarity(Arrays.asList(4, 7, 3, 9, 2), Arrays.asList(4, 7, 3, 9, 5, 2)));
-        assertEquals(0.7142857142857143, compoundOrderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(4, 7, 3, 5, 9, 2)));
-        assertEquals(0.6, compoundOrderedSetSimilarity(Arrays.asList(1, 2, 3), Arrays.asList(1, 2, 3, 4, 5)));
-        assertEquals(0.5777777777777778, compoundOrderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(4, 3, 7, 2, 9)));
-        assertEquals(0.4, compoundOrderedSetSimilarity(Arrays.asList(1, 2), Arrays.asList(1, 2, 3, 4, 5)));
-        assertEquals(0.2962962962962963, compoundOrderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(4, 3, 7)));
-        assertEquals(0.2777777777777778, compoundOrderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(3, 9, 2)));
-        assertEquals(0.25, compoundOrderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(5, 7, 1, 8)));
-        assertEquals(0.007142857142857141, compoundOrderedSetSimilarity(Arrays.asList(1, 2, 3, 4, 5), Arrays.asList(14, 13, 12, 11, 10, 9, 8, 7, 6, 1)));
-        assertEquals(0.0, compoundOrderedSetSimilarity(Arrays.asList(5, 4, 3, 2, 1), Arrays.asList(1, 2, 3, 4, 5)));
-        assertEquals(0.0, compoundOrderedSetSimilarity(List.of(5), List.of(1)));
-        assertEquals(0.0, compoundOrderedSetSimilarity(Collections.emptyList(), List.of(1)));
-        assertEquals(0.0, compoundOrderedSetSimilarity(Arrays.asList(4, 7), Collections.emptyList()));
-    }
-
-    @Test
     public void compareVariousLists_orderedSetSimilarity() {
         assertEquals(1.0, orderedSetSimilarity(Arrays.asList(1, 2, 3, 4, 5), Arrays.asList(1, 2, 3, 4, 5)));
         assertEquals(1.0, orderedSetSimilarity(List.of(1), List.of(1)));
         assertEquals(1.0, orderedSetSimilarity(Collections.emptyList(), Collections.emptyList()));
-        assertEquals(0.8280000000000001, orderedSetSimilarity(Arrays.asList(1, 3, 2, 4, 5), Arrays.asList(1, 2, 3, 4, 5)));
+        assertEquals(0.92, orderedSetSimilarity(Arrays.asList(1, 3, 2, 4, 5), Arrays.asList(1, 2, 3, 4, 5)));
         assertEquals(0.8055555555555556, orderedSetSimilarity(Arrays.asList(4, 7, 3, 9, 2), Arrays.asList(4, 7, 3, 9, 5, 2)));
+        assertEquals(0.7222222222222223, orderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(4, 3, 7, 2, 9)));
         assertEquals(0.7142857142857143, orderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(4, 7, 3, 5, 9, 2)));
         assertEquals(0.6, orderedSetSimilarity(Arrays.asList(1, 2, 3), Arrays.asList(1, 2, 3, 4, 5)));
-        assertEquals(0.5777777777777778, orderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(4, 3, 7, 2, 9)));
+        assertEquals(0.52, orderedSetSimilarity(Arrays.asList(5, 4, 3, 2, 1), Arrays.asList(1, 2, 3, 4, 5)));
+        assertEquals(0.5, orderedSetSimilarity(Arrays.asList(1, 2), Arrays.asList(2, 1)));
+        assertEquals(0.4444444444444444, orderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(4, 3, 7)));
         assertEquals(0.4, orderedSetSimilarity(Arrays.asList(1, 2), Arrays.asList(1, 2, 3, 4, 5)));
-        assertEquals(0.2962962962962963, orderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(4, 3, 7)));
         assertEquals(0.2777777777777778, orderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(3, 9, 2)));
         assertEquals(0.25, orderedSetSimilarity(Arrays.asList(4, 7, 3, 8, 9, 2), Arrays.asList(5, 7, 1, 8)));
         assertEquals(0.007142857142857141, orderedSetSimilarity(Arrays.asList(1, 2, 3, 4, 5), Arrays.asList(14, 13, 12, 11, 10, 9, 8, 7, 6, 1)));
-        assertEquals(0.0, orderedSetSimilarity(Arrays.asList(5, 4, 3, 2, 1), Arrays.asList(1, 2, 3, 4, 5)));
         assertEquals(0.0, orderedSetSimilarity(List.of(5), List.of(1)));
         assertEquals(0.0, orderedSetSimilarity(Collections.emptyList(), List.of(1)));
         assertEquals(0.0, orderedSetSimilarity(Arrays.asList(4, 7), Collections.emptyList()));
