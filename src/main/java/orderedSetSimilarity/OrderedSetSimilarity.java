@@ -4,14 +4,18 @@ import java.util.*;
 
 public class OrderedSetSimilarity {
 
+    public static double orderedSetSimilarity(List<Integer> list1, List<Integer> list2) {
+        return orderedSetSimilarity(list1.stream().mapToInt(i -> i).toArray(), list2.stream().mapToInt(i -> i).toArray());
+    }
+
     /**
      * compute the similarity between 2 lists more efficiently by combining Jaccard and Displacement similarity.
      * @param list1
      * @param list2
      * @return
      */
-    public static double orderedSetSimilarity(List<Integer> list1, List<Integer> list2) {
-        if (list1.isEmpty() && list2.isEmpty()) {
+    public static double orderedSetSimilarity(int[] list1, int[] list2) {
+        if (list1.length == 0 && list2.length == 0) {
             // empty set always equals itself
             return 1.0;
         }
@@ -22,11 +26,11 @@ public class OrderedSetSimilarity {
         // map each item to its index in each list
         Map<Integer, Integer> indexMap1 = new HashMap<>();
         Map<Integer, Integer> indexMap2 = new HashMap<>();
-        for (int i = 0; i < list1.size(); i++) {
-            indexMap1.put(list1.get(i), i);
+        for (int i = 0; i < list1.length; i++) {
+            indexMap1.put(list1[i], i);
         }
-        for (int i = 0; i < list2.size(); i++) {
-            indexMap2.put(list2.get(i), i);
+        for (int i = 0; i < list2.length; i++) {
+            indexMap2.put(list2[i], i);
         }
 
 
@@ -40,13 +44,14 @@ public class OrderedSetSimilarity {
         }
 
         // displacement similarity
-        int maxListSize = Math.max(list1.size(), list2.size());
+        int maxListSize = Math.max(list1.length, list2.length);
         if (maxListSize <= 1 || intersectionSize == 0) {
             // either the lists have no common element or are equal
             displacementSimilarity = 1.0;
         } else {
             double totalPenalty = 0.0;
-            for (Integer element : indexMap1.keySet()) {
+            for (int i = 0; i < list1.length; i++) {
+                Integer element = list1[i];
                 if (indexMap2.containsKey(element)) {
                     totalPenalty += Math.abs(indexMap1.get(element) - indexMap2.get(element));
                 }
